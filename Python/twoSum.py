@@ -25,8 +25,9 @@ def func_v2(nums, target):
         if complement in nums:
             return [i,nums.index(complement)]
         return []
+print(func_v2(nums, 9))
  
-def func_V3(nums, target):
+'''def func_V3(nums, target):
     complements = {}
     for i, num in enumerate(nums):
         if str(num) in complements:
@@ -37,7 +38,7 @@ def func_V3(nums, target):
     return []
 print(func_V3([2,7,11,15], 9))
 print(func_V3([2,7,11,15], 26))
-print(func_V3(nums, 4))
+print(func_V3(nums, 4))'''
 
 
 

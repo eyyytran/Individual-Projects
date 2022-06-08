@@ -10,7 +10,7 @@ return [0, 1].'''
 
 test = [1,2,3,4,5]
 nums = [2,7,11,15]
-def get_indexes_that_make_target(list, target):
+def func_v1(list, target):
     for i, num in enumerate(list):
         for j, num2 in enumerate(list):
             if j >= i+1:
@@ -18,20 +18,26 @@ def get_indexes_that_make_target(list, target):
                 if result == target:
                     return [i,j]
     return []
-print(get_indexes_that_make_target(test, 4))
 
-# def func(nums, target):
-#     complements = {}
-#     for i, num in enumerate(nums):
-#         if str(num) in complements:
-#             print(complements)
-#             return [complements[str(num)], i]
-#         complements[str(target - num)] = i
-#     print(complements)
-#     return []
-# print(func([2,7,11,15], 9))
-# print(func([2,7,11,15], 26))
-# print(func(nums, 4))
+def func_v2(nums, target):
+    for i, num in enumerate(nums):
+        complement = target - nums[i]
+        if complement in nums:
+            return [i,nums.index(complement)]
+        return []
+ 
+def func_V3(nums, target):
+    complements = {}
+    for i, num in enumerate(nums):
+        if str(num) in complements:
+            print(complements)
+            return [complements[str(num)], i]
+        complements[str(target - num)] = i
+    print(complements)
+    return []
+print(func_V3([2,7,11,15], 9))
+print(func_V3([2,7,11,15], 26))
+print(func_V3(nums, 4))
 
 
 

@@ -1,8 +1,11 @@
+from random import randint
+
 game_running = True
+
 
 while game_running:
     player = {'name':'Manuel','attack': 20,'heal': 16,'health': 100}
-    monster = {'name':'Max','attack': 12,'health': 100}
+    monster = {'name':'Max','attack_min': 10, 'attack_max': 20, 'health': 100}
     new_round = True
     
     print('---' * 7)
@@ -22,17 +25,31 @@ while game_running:
             if monster['health'] <= 0:
                 player_won = True
             else:
-                player['health'] = player['health'] - monster['attack']
+                monster_attack = randint(monster['attack_min'], monster['attack_max'])
+                player['health'] = player['health'] - monster_attack
                 if player['health'] <= 0:
                     monster_won = True
+        
         elif player_choice == '2':
-            print('Heal Player')
+            player['health'] = player['health'] + player['heal']
+            player['health'] = player['health'] - monster['attack']
+            if player['health'] <= 0:
+                    monster_won = True
+
         elif player_choice == '3':
             game_running = False
             new_round = False
         else:
             print('Invalid Condition')
-        if player_won == True or monster_won == True:
+
+        if player_won == False and monster_won == False:
+            print(player['name'] + ' has ' + str(player['health']) + ' left.')
+            print(monster['name'] + ' has ' + str(monster['health']) + ' left.')
+
+        elif player_won:
+            print(player['name'] + ' won.')
             new_round = False
-
-
+        
+        elif monster_won:
+            print(monster['name'] + ' won.')
+            new_round = False

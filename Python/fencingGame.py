@@ -1,3 +1,5 @@
+from random import randint
+
 game_running = True
 
 def titleborders():
@@ -7,19 +9,20 @@ def contentborders():
     print('---' * 7)
 
 class Player:
-    def __init__(self, name, speed, skill):
+    def __init__(self, name, speed = 0, skill = 0, point = 0):
         self.name = name
         self.speed = speed
         self.skill = skill
+        self.points = point
 
 class Opponent(Player):
-    def __init__(self, name, speed, skill, rating):
-        super().__init__(name, speed, skill)
+    def __init__(self, name, rating = '', speed=0, skill=0, point=0):
+        super().__init__(name, speed, skill, point)
         self.rating = rating
 
-szilagyi = Opponent('Aron Szilagyi',100,100,'A')
 
-fox = Opponent('Chloe Fox-Gitomer', 70, 70, 'C')
+# szilagyi = Opponent('Aron Szilagyi',100,100,'A')
+# fox = Opponent('Chloe Fox-Gitomer', 70, 70, 'C')
 
 
 while game_running:
@@ -39,8 +42,12 @@ while game_running:
         
         player_choice = input('Choose an action:\n1)Attack\n2)Parry\n3)Attack in Preparation\n4) Exit the Game\n')
 
+        opponent_choice = 3 #put randint later
+
         if player_choice == '1':
-            pass
+            if opponent_choice == 3:
+                player.points += 1
+                print('The score is:\n' + player.name + ' - ' + str(player.points) + '\n'+ opponent.name + ' - ' + str(opponent.points))  
         elif player_choice == '2':
             pass
         elif player_choice == '3':

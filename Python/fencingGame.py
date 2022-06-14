@@ -15,15 +15,23 @@ class Player:
         self.skill = skill
         self.points = point
 
+listOfOpponents = []
+
 class Opponent(Player):
     def __init__(self, name, rating = '', speed=0, skill=0, point=0):
         super().__init__(name, speed, skill, point)
         self.rating = rating
+    def addOpponent(self):
+        listOfOpponents.append(Opponent)
+        print(listOfOpponents)
 
+szilagyi = Opponent('Aron Szilagyi', 'GOAT', 100,100)
+fox = Opponent('Chloe Fox-Gitomer', 'B', 70, 70)
+joe = Opponent('Joe Shmoe', 'Unrated', 0, 0)
 
-# szilagyi = Opponent('Aron Szilagyi',100,100,'A')
-# fox = Opponent('Chloe Fox-Gitomer', 70, 70, 'C')
-
+szilagyi.addOpponent()
+fox.addOpponent()
+joe.addOpponent()
 
 while game_running:
     titleborders()

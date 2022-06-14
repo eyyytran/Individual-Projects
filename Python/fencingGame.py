@@ -144,7 +144,18 @@ while game_running:
             print(opponent_choice)
             checkPoints()
         elif player_choice == '3':
-            pass
+            if opponent_choice == 1:
+                opponentPoint()
+            if opponent_choice == 2:
+                playerPoint()
+            if opponent_choice == 3:
+                if player.speed >= opponent.speed:
+                    playerPoint()
+                if player.speed <= opponent.speed:
+                    opponentPoint()
+            print(opponent_choice)
+            checkPoints()
+
         elif player_choice == '4':
             new_bout = False
 

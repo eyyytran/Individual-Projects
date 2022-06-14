@@ -56,42 +56,41 @@ while game_running:
         player_won = False
         opponent_won = False
         
-        player_choice = input('Choose an action:\n1)Attack\n2)Parry\n3)Attack in Preparation\n4) Exit the Game\n')
-
-        opponent_choice = 3 #put randint later
-
-        if player_choice == '1':
-            if opponent_choice == 3:
-                playerPoint()
-                if player.points == 5:
+        def checkPoints():
+            if player.points == 5:
                     player_won = True
                     print(player.name + ' has won the bout.\nSalute and shake hands.') 
-            if opponent_choice == 2:
+            elif opponent.points == 5:
+                    opponent_won = True
+                    print(opponent.name + ' has won the bout.\nSalute and shake hands.')
+
+        player_choice = input('Choose an action:\n1)Attack\n2)Parry\n3)Attack in Preparation\n4) Exit the Game\n')
+
+        opponent_choice = randint(1,3)
+
+        if player_choice == '1': #player attacks
+            if opponent_choice == 3: #opponent does attack in prep
+                playerPoint()
+            if opponent_choice == 2: #opponent parries
                 if player.speed >= opponent.skill:
                     playerPoint()
-                    if player.points == 5:
-                        player_won = True
-                        print(player.name + ' has won the bout.\nSalute and shake hands.') 
                 if player.speed <= opponent.skill:
                     opponentPoint()
-                    if opponent.points == 5:
-                        opponent_won = True
-                        print(opponent.name + ' has won the bout.\nSalute and shake hands.')
-            if opponent_choice == 1:
+            if opponent_choice == 1: #opponent attacks
                 if player.speed >= opponent.speed:
                     playerPoint()
-                    if player.points == 5:
-                        player_won = True
-                        print(player.name + ' has won the bout.\nSalute and shake hands.') 
                 if player.speed <= opponent.speed:
                     opponentPoint()
-                    if opponent.points == 5:
-                        opponent_won = True
-                        print(opponent.name + ' has won the bout.\nSalute and shake hands.')
-
-        if player_choice == '2':
-            pass
-        elif player_choice == '3':
+            print(opponent_choice)
+            checkPoints()
+        if player_choice == '2': #player parries
+            if opponent_choice == 1:
+                if player.skill >= opponent.speed:
+                    playerPoint()
+                if player.skill <= opponent.speed:
+                    opponentPoint()
+            
+        elif player_choice == '3':1
             pass
         elif player_choice == '4':
             new_bout = False    

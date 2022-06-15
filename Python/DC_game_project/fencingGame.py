@@ -2,7 +2,7 @@ from random import randint
 
 game_running = True
 
-# listOfOpponents = []
+listOfOpponents = []
 
 
 class Player:

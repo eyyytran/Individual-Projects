@@ -83,9 +83,6 @@ while game_running:
         opponent_choice = randint(1, 3)
         chance = randint(0, 100)
 
-        if player_choice != '1' or '2' or '3' or '4':
-            print("Invalid Input: Try typing in a number.\n")
-
         if player_choice == '1':
             if opponent_choice == 3:
                 print("Attack. Attack in Preparation.")
@@ -171,13 +168,15 @@ while game_running:
         elif player_choice == '4':
             new_bout = False
 
+        elif player_choice != '1' or '2' or '3' or '4':
+            print("Invalid Input: Try typing in a number.\n")
+
         if player_won == True or opponent_won == True:
             replay = input('Would you like to fence again? (Y/N)\n')
-            if replay != 'Y' or 'N':
-                print('Invalid Input: Try typing Y or N')
-            if replay == 'Y':
+            if replay.lower() == 'y':
                 new_bout = True
-            if replay == 'N':
+            elif replay.lower() == 'n':
                 new_bout = False
-
+            elif replay.lower() != 'y' or 'n':
+                print('Invalid Input: Try typing Y or N')
     break

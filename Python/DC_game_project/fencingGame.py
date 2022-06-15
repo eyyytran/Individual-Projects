@@ -14,7 +14,6 @@ class Player:
 
     def playerPoint(self):
         self.points += 1
-        print(self.name + ' - ' + str(self.points))
 
 
 class Opponent(Player):
@@ -28,7 +27,6 @@ class Opponent(Player):
 
     def opponentPoint(self):
         self.points += 1
-        print(self.name + ' - ' + str(self.points))
 
 
 szilagyi = Opponent('Aron Szilagyi', 'GOAT', 100, 100)
@@ -100,6 +98,11 @@ def checkPoints():
         opponent_won = True
 
 
+def printPoints():
+    print('Score is:\n' + player.name + ' - ' + str(player.points) +
+          '\n' + opponent.name + ' - ' + str(opponent.points))
+
+
 while game_running:
     printTitleBorders()
     initGame()
@@ -143,7 +146,7 @@ while game_running:
                 if player.speed < opponent.speed:
                     print('Attack. Contre Attack.')
                     opponent.opponentPoint()
-            print(opponent_choice)
+            printPoints()
             checkPoints()
 
         elif player_choice == '2':
@@ -166,7 +169,7 @@ while game_running:
             if opponent_choice == 3:
                 print('Attack Touche.')
                 opponent.opponentPoint()
-            print(opponent_choice)
+            printPoints()
             checkPoints()
 
         elif player_choice == '3':
@@ -190,7 +193,7 @@ while game_running:
                 if player.speed < opponent.speed:
                     print('Attack. Counter Attack.')
                     opponent.opponentPoint()
-            print(opponent_choice)
+            printPoints()
             checkPoints()
 
         elif player_choice == '4':

@@ -12,6 +12,10 @@ class Player:
         self.skill = skill
         self.points = point
 
+    def playerPoint(self):
+        self.points += 1
+        print(self.name + ' - ' + str(self.points))
+
 
 class Opponent(Player):
     def __init__(self, name, rating='', speed=10, skill=10, point=0):
@@ -21,6 +25,19 @@ class Opponent(Player):
     def addOpponent(self):
         listOfOpponents.append(Opponent)
         print(listOfOpponents)
+
+    def opponentPoint(self):
+        self.points += 1
+        print(self.name + ' - ' + str(self.points))
+
+
+szilagyi = Opponent('Aron Szilagyi', 'GOAT', 100, 100)
+fox = Opponent('Chloe Fox-Gitomer', 'B', 70, 70)
+joe = Opponent('Joe Shmoe', 'Unrated', 10, 10)
+
+szilagyi.addOpponent()
+fox.addOpponent()
+joe.addOpponent()
 
 
 def printTitleBorders():
@@ -52,42 +69,42 @@ def Training():
         player.speed += randint(0, 10)
 
 
-player_won = False
-opponent_won = False
+def initGame():
+    userName = input('What is your name?\n')
+    chosenOpponent = input('Who would you like to fence?\n')
+    global opponent, player, new_bout, player_won, opponent_won
+    opponent = Opponent(chosenOpponent)
+    player = Player(userName)
+    new_bout = True
+    player_won = False
+    opponent_won = False
+    # for fencer in listOfOpponents:
+    #     if chosenOpponent in listOfOpponents:
+    #         opponent = Opponent(chosenOpponent)
+    #     if chosenOpponent not in listOfOpponents:
+    # redo chosenOpponent
+
+
+def checkPoints():
+    if player.points == 5:
+        printContentBorders()
+        print(player.name + ' has won the bout.\nSalute and shake hands.')
+        printTitleBorders()
+        global player_won
+        player_won = True
+    elif opponent.points == 5:
+        printContentBorders()
+        print(opponent.name + ' has won the bout.\nSalute and shake hands.')
+        printTitleBorders()
+        global opponent_won
+        opponent_won = True
+
 
 while game_running:
     printTitleBorders()
-    userName = input('What is your name?\n')
-    chosenOpponent = input('Who would you like to fence?\n')
-    player = Player(userName)
-    opponent = Opponent(chosenOpponent)
-    new_bout = True
+    initGame()
     printGameStartMessage()
     printContentBorders()
-
-    def playerPoint():
-        player.points += 1
-        print('The score is:\n' + player.name + ' - ' + str(player.points) +
-              '\n' + opponent.name + ' - ' + str(opponent.points))
-
-    def opponentPoint():
-        opponent.points += 1
-        print('The score is:\n' + player.name + ' - ' + str(player.points) +
-              '\n' + opponent.name + ' - ' + str(opponent.points))
-
-    def checkPoints():
-        if player.points == 5:
-            printContentBorders()
-            print(player.name + ' has won the bout.\nSalute and shake hands.')
-            printTitleBorders()
-            global player_won
-            player_won = True
-        elif opponent.points == 5:
-            printContentBorders()
-            print(opponent.name + ' has won the bout.\nSalute and shake hands.')
-            printTitleBorders()
-            global opponent_won
-            opponent_won = True
 
     while new_bout:
         player_choice = getPlayerChoice()
@@ -97,35 +114,35 @@ while game_running:
         if player_choice == '1':
             if opponent_choice == 3:
                 print("Attack. Attack in Preparation.")
-                playerPoint()
+                player.playerPoint()
             if opponent_choice == 2:
                 if player.speed > opponent.skill:
                     print('Parry Riposte - No. Attack Touche.')
-                    playerPoint()
+                    player.playerPoint()
                 if player.speed == opponent.skill:
                     if chance <= 50:
                         print('Parry Riposte - No. Attack Touche.')
-                        playerPoint()
+                        player.playerPoint()
                     if chance > 50:
                         print('Attack. Parry Riposte Touche.')
-                        opponentPoint()
+                        opponent.opponentPoint()
                 if player.speed < opponent.skill:
                     print('Attack. Parry Riposte Touche.')
-                    opponentPoint()
+                    opponent.opponentPoint()
             if opponent_choice == 1:
                 if player.speed > opponent.speed:
                     print('Attack. Contre Attack.')
-                    playerPoint()
+                    player.playerPoint()
                 if player.speed == opponent.speed:
                     if chance <= 50:
                         print('Attack. Contre Attack.')
-                        playerPoint()
+                        player.playerPoint()
                     if chance > 50:
                         print('Attack. Contre Attack.')
-                        opponentPoint()
+                        opponent.opponentPoint()
                 if player.speed < opponent.speed:
                     print('Attack. Contre Attack.')
-                    opponentPoint()
+                    opponent.opponentPoint()
             print(opponent_choice)
             checkPoints()
 
@@ -133,46 +150,46 @@ while game_running:
             if opponent_choice == 1:
                 if player.skill > opponent.speed:
                     print('Attack. Parry Riposte Touche.')
-                    playerPoint()
+                    player.playerPoint()
                 if player.skill == opponent.speed:
                     if chance <= 50:
                         print('Attack. Parry Riposte Touche.')
-                        playerPoint()
+                        player.playerPoint()
                     if chance > 50:
                         print('Attack Touche.')
-                        opponentPoint()
+                        opponent.opponentPoint()
                 if player.skill < opponent.speed:
                     print('Attack Touche.')
-                    opponentPoint()
+                    opponent.opponentPoint()
             if opponent_choice == 2:
                 print("Both fencers hesitate off the line.\nWhat's your next move?\n")
             if opponent_choice == 3:
                 print('Attack Touche.')
-                opponentPoint()
+                opponent.opponentPoint()
             print(opponent_choice)
             checkPoints()
 
         elif player_choice == '3':
             if opponent_choice == 1:
                 print('Attack. Attack in Preparation.')
-                opponentPoint()
+                opponent.opponentPoint()
             if opponent_choice == 2:
                 print('Attack Touche')
-                playerPoint()
+                player.playerPoint()
             if opponent_choice == 3:
                 if player.speed > opponent.speed:
                     print('Attack. Counter Attack.')
-                    playerPoint()
+                    player.playerPoint()
                 if player.speed == opponent.speed:
                     if chance <= 50:
                         print('Attack. Counter Attack.')
-                        playerPoint()
+                        player.playerPoint()
                     if chance > 50:
                         print('Attack. Counter Attack.')
-                        opponentPoint()
+                        opponent.opponentPoint()
                 if player.speed < opponent.speed:
                     print('Attack. Counter Attack.')
-                    opponentPoint()
+                    opponent.opponentPoint()
             print(opponent_choice)
             checkPoints()
 

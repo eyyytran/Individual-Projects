@@ -23,19 +23,24 @@ class Opponent(Player):
 
     def addOpponent(self):
         listOfOpponents.append(Opponent)
-        print(listOfOpponents)
 
     def opponentPoint(self):
         self.points += 1
 
 
-szilagyi = Opponent('Aron Szilagyi', 'GOAT', 100, 100)
+szilagyi = Opponent('Aron Szilagyi', 'GOAT', 900, 1000)
+junghwan = Opponent('Kim Jung Hwan', 'A', 1000, 800)
+kharlan = Opponent('Olga Kharlan', 'A', 90, 90)
 fox = Opponent('Chloe Fox-Gitomer', 'B', 70, 70)
+lu = Opponent('Esther Lu', 'C', 50, 50)
 joe = Opponent('Joe Shmoe', 'Unrated', 10, 10)
 
 szilagyi.addOpponent()
 fox.addOpponent()
 joe.addOpponent()
+junghwan.addOpponent()
+lu.addOpponent()
+kharlan.addOpponent()
 
 
 def printTitleBorders():
@@ -53,18 +58,19 @@ def printGameStartMessage():
 
 def getPlayerChoice():
     return input(
-        'Choose an action:\n1)Attack\n2)Parry\n3)Attack in Preparation\n4)Exit the Game\n')
+        'Choose an action:\n1)Attack\n2)Parry\n3)Attack in Preparation\n4)Train\n5)Exit the Game\n')
 
 
 def Training():
     trainingChoice = input(
         "Which what would you like to work on today?\n1)Bladework\n2)Conditioning\n")
     if trainingChoice == '1':
-        print("You spent your morning training session on bladework drills.")
+        print("You work on bladework drills.")
         player.skill += randint(0, 10)
     if trainingChoice == '2':
-        print("You spent your morning training session on conditioning. You masochist ;)")
+        print("You work conditioning. You masochist ;)")
         player.speed += randint(0, 10)
+    print("It's time for afternoon classes, what would you like to do?")
 
 
 def initGame():
@@ -197,9 +203,12 @@ while game_running:
             checkPoints()
 
         elif player_choice == '4':
+            Training()
+
+        elif player_choice == '5':
             new_bout = False
 
-        elif player_choice != '1' or '2' or '3' or '4':
+        elif player_choice != '1' or '2' or '3' or '4' or '5':
             print("Invalid Input: Try typing in a number.\n")
 
         if player_won == True or opponent_won == True:

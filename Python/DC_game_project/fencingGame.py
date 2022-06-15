@@ -41,6 +41,17 @@ def getPlayerChoice():
         'Choose an action:\n1)Attack\n2)Parry\n3)Attack in Preparation\n4)Exit the Game\n')
 
 
+def Training():
+    trainingChoice = input(
+        "Which what would you like to work on today?\n1)Bladework\n2)Conditioning\n")
+    if trainingChoice == '1':
+        print("You spent your morning training session on bladework drills.")
+        player.skill += randint(0, 10)
+    if trainingChoice == '2':
+        print("You spent your morning training session on conditioning. You masochist ;)")
+        player.speed += randint(0, 10)
+
+
 player_won = False
 opponent_won = False
 

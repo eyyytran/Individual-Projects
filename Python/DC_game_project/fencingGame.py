@@ -1,45 +1,5 @@
 from random import randint
-
-# game_running = True
-# listOfOpponents = []
-# player = None
-# opponent = None
-# new_bout = True
-# player_won = False
-# opponent_won = False
-
-
-class GameState:
-    def __init__(self):
-        self.status = 'init'    # 'init' or 'in progress' or 'exit'
-        self.player = None
-        self.opponent = None
-        self.listOfOpponents = []
-        self.result = None      # None or 'player won' or 'opponent won'
-
-    def setStatus(self, status):
-        self.status = status
-
-    def setPlayer(self, player):
-        self.player = player
-
-    def setOpponent(self, opponent):
-        self.opponent = opponent
-
-    def addOpponent(self, opponent):
-        self.listOfOpponents.append(opponent)
-
-    def setResult(self, result):
-        self.result = result
-
-    def playAgain(self):
-        self.player.resetPoints()
-        self.opponent.resetPoints()
-        self.result = None
-        self.status = 'init'
-
-    def exit(self):
-        self.setStatus('exit')
+from GameState import gameState
 
 
 def initOpponents():
@@ -57,8 +17,7 @@ def initOpponents():
         gameState.addOpponent(opponent)
 
 
-# TODO add reset method to go back to initial state
-
+# TODO move Player and Opponent to own files
 
 class Player:
     def __init__(self, name, speed=0, skill=0, point=0):
@@ -76,8 +35,7 @@ class Player:
     def resetPoints(self):
         self.points = 0
 
-# refactor this, remove the opponentPoint method, change the Player playerPoint method to be just point, because the instance stores the points it has...
-# method will be called as player.point() or opponent.point(), don't need to differentiate between them
+# TODO refactor Player and Opponent, remove the opponentPoint method, change the Player playerPoint method to be just point, method will be called as player.point() or opponent.point(), don't need to differentiate between them
 
 
 class Opponent(Player):
@@ -305,6 +263,5 @@ def runGame():
             handleResult()
 
 
-gameState = GameState()
 initOpponents()
 runGame()

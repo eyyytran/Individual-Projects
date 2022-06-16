@@ -1,8 +1,12 @@
 from random import randint
 
 game_running = True
-
 listOfOpponents = []
+player = None
+opponent = None
+new_bout = True
+player_won = False
+opponent_won = False
 
 
 class Player:
@@ -12,6 +16,9 @@ class Player:
         self.skill = skill
         self.points = point
 
+    def __str__(self):
+        return self.name
+
     def playerPoint(self):
         self.points += 1
 
@@ -20,21 +27,15 @@ class Opponent(Player):
     def __init__(self, name, rating='', speed=10, skill=10, point=0):
         super().__init__(name, speed, skill, point)
         self.rating = rating
-        self.list = []
 
-    def __repr__(self):
-        super().__repr__()
-        return str(self)
+    def __str__(self):
+        return self.name + ' - ' + self.rating
 
     def addOpponent(self):
-        self.list.append(Opponent)
+        listOfOpponents.append(self)
 
     def opponentPoint(self):
         self.points += 1
-
-    def printOpponent(self):
-        for opponents in Opponent.list:
-            print(self.name + ' - ' + self.rating)
 
 
 szilagyi = Opponent('Aron Szilagyi', 'GOAT', 900, 1000)
@@ -85,24 +86,26 @@ def Training():
 
 
 def setPlayer():
-    global player, new_bout, player_won, opponent_won
     userName = input('What is your name?\n')
     player = Player(userName)
-    new_bout = True
-    player_won = False
-    opponent_won = False
 
 
 def selectOpponent():
+    printOpponentChoices()
+    index = None
+    while True:
+        index = int(input('Select opponent: '))
+        if index in range(len(listOfOpponents)):
+            break
+        print('Invalid input')
     global opponent
-    for fencer in Opponent.list:
-        Opponent.printOpponent()
-        chooseOpponent = input('Who would you like to fence?\n')
-        if chooseOpponent in Opponent.list:
-            opponent = Opponent(chooseOpponent)
-        if chooseOpponent not in Opponent.list:
-            print("Invalid Input: Try selecting an opponent from the list.")
-            chooseOpponent = input('Who would you like to fence?\n')
+    opponent = listOfOpponents[index]
+    print('current opponent', opponent)
+
+
+def printOpponentChoices():
+    for index, opponent in enumerate(listOfOpponents):
+        print('To fight', opponent, 'select', index)
 
 
 def checkPoints():
@@ -133,6 +136,7 @@ def runGame():
         printGameStartMessage()
         printContentBorders()
 
+        global new_bout
         while new_bout:
             player_choice = getPlayerChoice()
             opponent_choice = randint(1, 3)

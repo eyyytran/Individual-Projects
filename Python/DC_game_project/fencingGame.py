@@ -1,5 +1,7 @@
 from random import randint
 from GameState import gameState
+from playerFile import Player
+from opponentFile import Opponent
 from styles import printContentBorders, printTitleBorders, getPlayerChoice
 
 
@@ -10,40 +12,12 @@ def initOpponents():
         Opponent('Olga Kharlan', 'A', 90, 90),
         Opponent('Chloe Fox-Gitomer', 'B', 70, 70),
         Opponent('Esther Lu', 'C', 50, 50),
-        Opponent('Kelmour Bucknor', 'D', 30, 30),
+        Opponent('Isak Swaim', 'D', 30, 30),
         Opponent('Mark Zuckerberg', 'E', 20, 20),
         Opponent('Joe Shmoe', 'U', 10, 10)
     ]
     for opponent in opponents:
         gameState.addOpponent(opponent)
-
-
-# TODO move Player and Opponent to own files
-
-class Player:
-    def __init__(self, name, speed=0, skill=0, point=0):
-        self.name = name
-        self.speed = speed
-        self.skill = skill
-        self.points = point
-
-    def __str__(self):
-        return self.name
-
-    def addPoint(self):
-        self.points += 1
-
-    def resetPoints(self):
-        self.points = 0
-
-
-class Opponent(Player):
-    def __init__(self, name, rating='', speed=10, skill=10, point=0):
-        super().__init__(name, speed, skill, point)
-        self.rating = rating
-
-    def __str__(self):
-        return self.name + ' - ' + self.rating
 
 
 def printGameStartMessage():

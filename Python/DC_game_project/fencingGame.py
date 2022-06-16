@@ -87,6 +87,7 @@ def Training():
 
 def setPlayer():
     userName = input('What is your name?\n')
+    global player
     player = Player(userName)
 
 
@@ -229,19 +230,25 @@ def runGame():
                 Training()
 
             elif player_choice == '5':
-                new_bout = False
+                break
 
             elif player_choice != '1' or '2' or '3' or '4' or '5':
                 print("Invalid Input: Try typing in a number.\n")
 
             if player_won == True or opponent_won == True:
-                replay = input('Would you like to fence again? (Y/N)\n')
-                if replay.lower() == 'y':
-                    new_bout = True
-                elif replay.lower() == 'n':
-                    new_bout = False
-                elif replay.lower() != 'y' or 'n':
+                while True:
+                    replay = input('Would you like to fence again? (Y/N)\n')
+                    if replay.lower() == 'y':
+                        new_bout = True
+                        selectOpponent()
+                        printGameStartMessage()
+                        printContentBorders()
+                        break
+                    elif replay.lower() == 'n':
+                        new_bout = False
+                        break
                     print('Invalid Input: Try typing Y or N')
+
         break
 
 

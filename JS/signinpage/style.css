@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap');
+
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  background: lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.whole-shebam {
+  height: 700px;
+  width: 1000px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px gray;
+}
+
+.hero {
+  height: 100%;
+  width: 50%;
+  background: lightslategray;
+  border-radius: 10px 0 0 10px;
+}
+
+#hero-image {
+  height: 100%;
+  width: 100%;
+  object-position: ;
+  object-fit: cover;
+}
+
+.main-module {
+  height: 100%;
+  width: 50%;
+  background: lightcoral;
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#welcometext,
+#welcometext2,
+#welcometext3 {
+  margin: 0 5px 5px 0;
+}
+
+#welcometext {
+  margin-top: 20px;
+}
+
+#welcometext3 {
+  margin-bottom: 40px;
+}
+
+.labeltext {
+  margin: 10px;
+}
+
+#create-pswd,
+#enter-email,
+#confirm-pswd,
+#submit-button {
+  height: 5%;
+  width: 70%;
+  border-radius: 10px;
+}
+
+.staysigned {
+  margin: 5px;
+}
+
+.disclaimer {
+  margin: 30px;
+  text-decoration: none;
+}
+
+.link {
+  text-decoration: none;
+}
+a:hover {
+  background-color: lightgreen;
+}
+
+#submit-button {
+}

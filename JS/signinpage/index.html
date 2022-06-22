@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fake Website!</title>
+    <link defer rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="whole-shebam">
+        <div class="hero">
+          <img
+            src="https://images.unsplash.com/photo-1556536034-2da42f3afe2c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1633&q=80"
+            alt="blue origami mountin"
+            id="hero-image"
+          />
+        </div>
+        <div class="main-module">
+          <h3 id="welcometext">Welcome</h3>
+          <img
+            src="/signinpage/signinpageimages/fakelogo.svg"
+            alt="torch logo"
+            id="logo"
+          />
+          <h1 id="welcometext2">Create an Account</h1>
+          <p id="welcometext3">Let's get you signed up.</p>
+
+          <label for="email" class="labeltext">Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="e.g. pekhart@orkea.gov"
+            id="enter-email"
+          />
+
+          <label for="pswd" class="labeltext">Password</label>
+          <input
+            type="password"
+            name="createpswd"
+            placeholder="Create your password"
+            id="create-pswd"
+          />
+
+          <label for="confirm" class="labeltext">Confirm Password</label>
+          <input
+            type="password"
+            name="confirmpswd"
+            placeholder="Re-type your password"
+            id="confirm-pswd"
+          />
+          <div class="staysigned">
+            <input type="checkbox" name="staysignedin" id="sign-button" />
+            <label for="staysignedin" class="smalltext">Remember me</label>
+          </div>
+          <p class="disclaimer">
+            By clicking the submit button below, you agree to this website's
+            <a href="#terms" class="link">Terms of Service</a> and
+            <a href="#privacy" class="link">Privacy Policy</a>.
+          </p>
+          <button type="submit" id="submit-button">Submit</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -35,8 +35,8 @@ body {
 #hero-image {
   height: 100%;
   width: 100%;
-  object-position: ;
   object-fit: cover;
+  border-radius: 10px 0 0 10px;
 }
 
 .main-module {

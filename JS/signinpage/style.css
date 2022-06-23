@@ -121,9 +121,9 @@ a:hover {
     background-color: var(--shadow-color);
 }
 
-/* #submit-button:hover {
-  background: ;
-} */
+#submit-button:hover {
+    background: var(--shadow-color);
+}
 
 @media screen and (max-width: 900px) {
     .container {

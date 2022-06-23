@@ -90,9 +90,7 @@ body {
     margin: 10px;
 }
 
-#create-pswd,
-#enter-email,
-#confirm-pswd,
+.inputfield,
 #submit-button {
     height: 45px;
     width: 70%;
@@ -115,6 +113,14 @@ body {
 
 .link {
     text-decoration: none;
+}
+
+.inputfield:focus {
+    border-color: #e0f8ff;
+}
+
+.inputfield:focus::placeholder {
+    color: transparent;
 }
 
 a:hover {

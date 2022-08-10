@@ -8,11 +8,18 @@ const App: FC = () => {
         setCounter(counter + 1)
     }
 
+    const resetCounter = () => {
+        setCounter(0)
+    }
+
     return (
         <div className='App'>
             <div className='counter'>{counter}</div>
             <button type='submit' onClick={handleChange}>
-                Click
+                Add
+            </button>
+            <button type='submit' onClick={resetCounter}>
+                Reset
             </button>
         </div>
     )

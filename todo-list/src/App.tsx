@@ -47,6 +47,7 @@ const App: FC = () => {
                         type='number'
                         placeholder='Deadline (in Days)'
                         name='deadline'
+                        value={deadline}
                         onChange={handleChange}
                     />
                 </div>

@@ -4,11 +4,11 @@ import './App.css'
 const App: FC = () => {
     const [counter, setCounter] = useState<number>(0)
 
-    const handleChange = () => {
+    const handleChange = (): void => {
         setCounter(counter + 1)
     }
 
-    const resetCounter = () => {
+    const resetCounter = (): void => {
         setCounter(0)
     }
 

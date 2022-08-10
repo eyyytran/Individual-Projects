@@ -27,7 +27,7 @@ const App: FC = () => {
     const completeTask = (taskNameToDelete: string): void => {
         setToDoList(
             todoList.filter(task => {
-                return task.taskName != taskNameToDelete
+                return task.taskName !== taskNameToDelete
             })
         )
     }

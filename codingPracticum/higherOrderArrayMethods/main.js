@@ -61,4 +61,71 @@ const getTenYearOldCompanies = () => {
     console.log(tenYearOldCompanies)
 }
 
-getTenYearOldCompanies()
+//map (returns a new array from anything)
+
+const createArrayOfNames = () => {
+    const companyNames = companies.map(
+        company => `${company.name} [${company.start} - ${company.end}]`
+    )
+    console.log(companyNames)
+}
+
+const sqrtNames = () => {
+    const sqrtedNames = ages.map(age => Math.sqrt(age))
+    console.log(sqrtedNames)
+}
+
+const squaredTimesTwoNames = () => {
+    const squaredTimedTwoNames = ages.map(age => Math.sqrt(age) * 2)
+    console.log(squaredTimedTwoNames)
+}
+
+//sort
+
+const sortStartYear = () => {
+    const sortedCompanies = companies.sort((c1, c2) => {
+        if (c1.start > c2.start) {
+            return 1
+        }
+        return -1
+    })
+    console.log(sortedCompanies)
+}
+
+const sortStartYear2 = () => {
+    const sortedCompanies = companies.sort((a, b) =>
+        a.start > b.start ? 1 : -1
+    )
+    console.log(sortedCompanies)
+}
+
+const sortAgesAscending = () => {
+    const sortedAges = ages.sort((a, b) => a - b)
+    console.log(sortedAges)
+}
+
+// reduce
+
+const addAges = () => {
+    const ageSum = ages.reduce((total, age) => total + age, 0)
+    console.log(ageSum)
+}
+
+const companyRange = () => {
+    const totalYears = companies.reduce(
+        (total, company) => total + (company.end - company.start),
+        0
+    )
+    console.log(totalYears)
+}
+
+//combine methods
+
+const combineAges = () => {
+    const combinedAges = ages
+        .map(age => age * 2)
+        .filter(age => age >= 40)
+        .sort((a, b) => a - b)
+        .reduce((a, b) => a + b)
+    return combinedAges
+}

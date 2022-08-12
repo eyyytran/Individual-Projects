@@ -119,6 +119,16 @@ const companyRange = () => {
     console.log(totalYears)
 }
 
+const array = [1, 2, 3]
+const four = [...array, 4]
+
+const mapButReduce = ages.reduce(
+    (accumulator, age) => [...accumulator, age * 2],
+    []
+)
+
+console.log(mapButReduce)
+
 //combine methods
 
 const combineAges = () => {

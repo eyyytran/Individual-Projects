@@ -7,48 +7,36 @@ const addAll = (...numbers) => {
         return sum + num
     }, 0)
 }
-console.log(addAll(2, 5, 6, 7))
 
 // CHALLENGE 2: SUM ALL PRIMES
 // Pass in a number to loop up to and add all of the prime numbers. A prime number is a whole number greater than 1 whose only factors are 1 and itself
 // ex. sumAllPrimes(10) == 17
 
-const sumAllPrimes = ([...nums]) => {
-    const primes = []
-    nums.forEach(num => {
-        if (num === 2) {
-            primes.push(num)
-        }
-        for (let i = 2; i <= n - 1; i++) {
-            if (num % i === 0) {
-                return
+const sumAllPrimes = num => {
+    let total = 0
+    const checkPrime = i => {
+        for (let j = 2; j < i; j++) {
+            if (i % j === 0) {
+                return false
             }
-            return primes.push(num)
         }
-    })
-    // if (num === 2) {
-    //     primes.push(num)
-    // }
-    // for (let i = 2; i <= num - 1; i++) {
-    //     if (num % i === 0) {
-    //         return
-    //     } else {
-    //         primes.push(num)
-    //         return primes
-    //     }
-    // }
-    // return primes.reduce((acc, curr) => {
-    //     return acc + curr
-    // }, 0)
+        return true
+    }
+    for (let i = 2; i <= num; i++) {
+        if (checkPrime(i)) {
+            total += i
+        }
+    }
+    return total
 }
-
-console.log(sumAllPrimes(nums))
 
 // CHALLENGE 3: SEEK & DESTROY
 // Remove from the array whatever is in the following arguments. Return the leftover numbers in an array
 // ex. seekAndDestroy([2, 3, 4, 6, 6, 'hello'], 2, 6) == [3, 4, 'hello']
 
-function seekAndDestroy() {}
+const seekAndDestroy = (arr, ...rest) => {
+    return arr.filter(val => !rest.includes(val))
+}
 
 // CHALLENGE 4: SORT BY HEIGHT
 // Some people are standing in a row in a park. There are trees between them which cannot be moved. Your task is to rearrange the people by their heights in a non-descending order without moving the trees.
@@ -56,7 +44,16 @@ function seekAndDestroy() {}
 // a = [-1, 150, 190, 170, -1, -1, 160, 180]
 // sortByHeight(a) == [-1, 150, 160, 170, -1, -1, 180, 190]
 
-function sortByHeight() {}
+const sortByHeight = arr => {
+    const people = []
+    const trees = []
+    arr.forEach((val, i) => (val === -1 ? trees.push(i) : people.push(val)))
+    const result = people.sort((a, b) => (a > b ? 1 : -1))
+    trees.forEach(tree => result.splice(tree, 0, -1))
+    return result
+}
+
+sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180])
 
 // CHALLENGE 5: MISSING LETTERS
 // Find the missing letter in the passed letter range and return it. If all letters are present, return undefined

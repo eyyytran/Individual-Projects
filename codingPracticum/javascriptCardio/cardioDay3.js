@@ -53,7 +53,7 @@ const sortByHeight = arr => {
     return result
 }
 
-sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180])
+// sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180])
 
 // CHALLENGE 5: MISSING LETTERS
 // Find the missing letter in the passed letter range and return it. If all letters are present, return undefined
@@ -62,7 +62,52 @@ sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180])
 // missingLetters("abcdefghjklmno") == "i"
 // missingLetters("abcdefghijklmnopqrstuvwxyz") == undefined
 
-function missingLetters() {}
+const missingLetters = string => {
+    const stack = [...string].reverse()
+    while (stack.length > 0) {
+        const currentCheck = stack.pop()
+        const nextLetter = String.fromCharCode(currentCheck.charCodeAt(0) + 1)
+        const nextCheck = stack.pop()
+        if (nextCheck !== nextLetter) {
+            return nextLetter
+        } else {
+            stack.push(nextCheck)
+        }
+    }
+}
+
+function missingLetters2(str) {
+    let compare = str.charCodeAt(0)
+    let missing
+
+    str.split('').forEach((char, i) => {
+        console.log({ compare, index: i })
+        if (str.charCodeAt(i) == compare) {
+            ++compare
+        } else {
+            missing = String.fromCharCode(compare)
+        }
+    })
+
+    return missing
+}
+
+function findMissingLetter(s) {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    for (let i = 0; i < s.length && i < alphabet.length; i++) {
+        console.log({ index: i })
+        if (s[i] !== alphabet[i]) return alphabet[i]
+    }
+    return undefined
+}
+
+// console.log(
+//     missingLetters2('abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz')
+// )
+
+console.log(
+    findMissingLetter('bcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz')
+)
 
 // CHALLENGE 6: EVEN & ODD SUMS
 // Take in an array and return an array of the sums of even and odd numbers

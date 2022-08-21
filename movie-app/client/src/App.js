@@ -8,7 +8,7 @@ const App = () => {
             try {
                 const response = await fetch('/express_backend')
                 const data = await response.json()
-                console.log(data)
+                setData(data)
             } catch (error) {
                 console.error(error)
             }

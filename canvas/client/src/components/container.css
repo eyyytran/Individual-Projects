@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.board-container {
+    height: 80vh;
+    width: 80vw;
+    border: 2px solid red;
+}

@@ -1,22 +1,27 @@
-import { Component, useState, useEffect } from 'react'
+import { Button, IconButton, TextField } from '@mui/material/'
+import { Assignment, Phone } from '@mui/icons-material'
+import { useEffect, useRef, useState } from 'react'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import Peer from 'simple-peer'
+import io from 'socket.io-client'
+
+const socket = io.connect('http://localhost:4000')
 
 const App = () => {
-    const [data, setData] = useState({ apiResponse: '' })
+    const [me, setMe] = useState('')
+    const [stream, setStream] = useState()
+    const [receivingCall, setReceivingCall] = useState(false)
+    const [caller, setCaller] = useState('')
+    const [callerSignal, setCallerSignal] = useState()
+    const [callAccepted, setCallAccepted] = useState(false)
+    const [idToCall, setIdToCall] = useState('')
+    const [callEnded, setCallEnded] = useState(false)
+    const [name, setName] = useState('')
+    const myVideo = useRef()
+    const userVideo = useRef()
+    const connectionRef = useRef()
 
-    useEffect(() => {
-        const callAPI = async () => {
-            try {
-                const response = await fetch('/express_backend')
-                const data = await response.json()
-                setData(data)
-            } catch (error) {
-                console.error(error)
-            }
-        }
-        callAPI()
-    }, [])
-
-    return <div className='App'>{data.express}</div>
+    return <div className='App'>Hello</div>
 }
 
 export default App

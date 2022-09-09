@@ -8,7 +8,6 @@ const Board = props => {
     const [drawing, setDrawing] = useState(false)
     const canvasRef = useRef(null)
     const ctxRef = useRef(null)
-    const socketRef = useRef()
 
     const startDraw = ({ nativeEvent }) => {
         const { offsetX, offsetY } = nativeEvent
@@ -33,8 +32,7 @@ const Board = props => {
         ctx.lineWidth = props?.size || '20'
         if (timeout !== undefined) clearTimeout(timeout)
         timeout = setTimeout(() => {
-            let base64ImageData = canvas.toDataUrl('image/png')
-            console.log(base64ImageData)
+            let base64ImageData = canvas.toDataURL('image/png')
         }, 1000)
     }
 

@@ -4,8 +4,9 @@ import './board.css'
 
 const Board = props => {
     let timeout
-
+    const socket = io.connect('http://localhost:3000')
     const [drawing, setDrawing] = useState(false)
+
     const canvasRef = useRef(null)
     const ctxRef = useRef(null)
 
@@ -19,6 +20,16 @@ const Board = props => {
     const stopDraw = () => {
         ctxRef.current.closePath()
         setDrawing(false)
+    }
+
+    const prepareData = data => {
+        const image = new Image()
+        const canvas = canvasRef.current
+        const ctx = canvas.getContext('2d')
+        image.onload(() => {
+            ctx.drawImage(image)
+        })
+        image.src = data
     }
 
     const draw = ({ nativeEvent }) => {
@@ -58,6 +69,10 @@ const Board = props => {
         ctx.lineWidth = props?.size || '20'
         ctxRef.current = ctx
     }, [])
+
+    socket.on('connect', () => {
+        console.log(socket.id)
+    })
 
     return (
         <canvas

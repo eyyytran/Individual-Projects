@@ -1,6 +1,5 @@
 // Things to work on:
 // introduction - have a rehearsed 30 second introduction that you know by heart, that sounds good
-// you don't graduate with a MERN stack - you learned the MERN stack
 // better variable names - name it what it is, the more clear it is the easier it will be to think as you're coding
 // there are several key array methods, you should remember (or be able to quickly check via google), how they work, what they return, and so on
 // join, filter, splice, find, findIndex, map, forEach, includes,
@@ -41,19 +40,13 @@ const addPlayer = (playerName, position, rank = null) => {
         name: playerName,
         rank,
     }
-    const positionObject = depthChart.find(
-        positionObject => positionObject.position === position
-    )
+    const positionObject = depthChart.find(positionObject => positionObject.position === position)
     positionObject.players.push(newPlayer)
 }
 
 const removePlayer = (playerName, position) => {
-    const { players } = depthChart.find(
-        positionObject => positionObject.position === position
-    )
-    const foundIndex = players.findIndex(
-        playerObject => playerObject.name === playerName
-    )
+    const { players } = depthChart.find(positionObject => positionObject.position === position)
+    const foundIndex = players.findIndex(playerObject => playerObject.name === playerName)
     players.splice(foundIndex, 1)
     // const filteredPlayers = foundPositionObject.players.filter(
     //     item => item.name !== playerName
@@ -74,7 +67,7 @@ addPlayer('Alex', 'qb', 1)
 addPlayer('Andrea', 'qb')
 addPlayer('Bob', 'rb')
 
-// removePlayer('Bob', 'rb')
+removePlayer('Bob', 'rb')
 // removePlayer('Andrea', 'qb')
 
 // printDepthChart()

@@ -4,7 +4,15 @@ const app = express()
 
 const PORT = 3000
 
-console.log('bye world')
+app.use('/users', (req, res, next) => {
+    console.log('Middleware 2')
+    res.send('<h1>Dummy Page</h1>')
+})
+
+app.use('/', (req, res, next) => {
+    console.log('Middleware 1')
+    res.send('<h1>Hello World</h1>')
+})
 
 const server = http
     .createServer({}, app)

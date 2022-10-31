@@ -4,6 +4,7 @@ const app = express()
 
 const PORT = 3000
 
+//dear future Andrea, order matters with this middleware omg why
 app.use('/users', (req, res, next) => {
     console.log('Middleware 2')
     res.send('<h1>Dummy Page</h1>')

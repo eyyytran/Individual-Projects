@@ -16,7 +16,7 @@ function App() {
             </header>
             <div className='flex-1 flex flex-col sm:flex-row'>
                 <div className='flex-1 flex flex-col justify-center items-center bg-indigo-100'>
-                    {game.state.isWon ? 'Game Over' : ''}
+                    {game.state.isWon || game.state.isDraw ? 'Game Over' : ''}
                     <Board />
                 </div>
             </div>

@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { isReadable } from 'stream'
 
 interface GameState {
     turn: string
     playerASelections: Array<number>
     playerBSelections: Array<number>
     isWon: boolean
+    isDraw: boolean
 }
 
 const winningConditions = [
@@ -34,6 +34,7 @@ const initialState: GameState = {
     playerASelections: [],
     playerBSelections: [],
     isWon: false,
+    isDraw: false,
 }
 
 const gameSlice = createSlice({
@@ -47,6 +48,13 @@ const gameSlice = createSlice({
             state.isWon = checkWinningConditions(
                 state.turn === 'A' ? state.playerASelections : state.playerBSelections
             )
+        },
+        checkIfDraw: state => {
+            state.isDraw =
+                state.playerASelections.length + state.playerBSelections.length === 9 &&
+                !state.isWon
+                    ? true
+                    : false
         },
         updateBoard: (state, action) => {
             const square = action.payload

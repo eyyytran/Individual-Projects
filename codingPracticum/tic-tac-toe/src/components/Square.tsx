@@ -23,6 +23,7 @@ const Square: FC<Props> = ({ squareNumber }) => {
         game.state.turn === 'A' ? setSymbol('X') : setSymbol('O')
         dispatch(game.action.updateBoard(squareNumber))
         dispatch(game.action.checkifWinner())
+        dispatch(game.action.checkIfDraw())
         dispatch(game.action.changePlayer())
         setIsDisabled(true)
     }

@@ -11,12 +11,14 @@ function App() {
 
     return (
         <div className='min-h-screen flex flex-col font-sans'>
-            <header className='text-xl font-bold'>Let's Play Tic-Tac-Toe</header>
+            <header className='h-[60px] text-4xl font-bold text-center bg'>
+                <h1>Let's Play Tic-Tac-Toe</h1>
+            </header>
             <div className='flex-1 flex flex-col sm:flex-row'>
-                <div className='flex-1 flex justify-center items-center bg-indigo-100'>
+                <div className='flex-1 flex flex-col justify-center items-center bg-indigo-100'>
+                    {game.state.isWon ? 'Game Over' : ''}
                     <Board />
                 </div>
-                <div className='order-first sm:w-32 bg-purple-200'>{game.state.player}</div>
             </div>
         </div>
     )

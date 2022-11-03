@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import gameSlice from '../store/gameSlice'
@@ -9,6 +9,7 @@ interface Props {
 
 const Square: FC<Props> = ({ squareNumber }) => {
     const [symbol, setSymbol] = useState<string>('')
+    const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
     const game = {
         state: useSelector((state: RootState) => state.game),
@@ -18,9 +19,17 @@ const Square: FC<Props> = ({ squareNumber }) => {
     const dispatch = useDispatch()
 
     const handleClick = () => {
-        game.state.player === 'A' ? setSymbol('X') : setSymbol('O')
+        if (isDisabled) return
+        game.state.turn === 'A' ? setSymbol('X') : setSymbol('O')
+        dispatch(game.action.updateBoard(squareNumber))
+        dispatch(game.action.checkifWinner())
         dispatch(game.action.changePlayer())
+        setIsDisabled(true)
     }
+
+    useEffect(() => {
+        if (game.state.isWon) setIsDisabled(true)
+    }, [game.state.isWon])
 
     return (
         <div

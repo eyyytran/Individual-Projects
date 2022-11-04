@@ -4,7 +4,7 @@ const testCase = [607, 618, 618, 617, 647, 716, 769, 792]
 const expectedResult = 5
 const fs = require('fs')
 
-fs.readFile('./puzzleInputs/day1inputs.txt', 'utf8', (err, data) => {
+fs.readFile('./puzzleInputs/rawData/day1inputs.txt', 'utf8', (err, data) => {
     const cleanedData = []
     const dataToArray = data.toString().split(/\r?\n/)
     dataToArray.forEach(string => cleanedData.push(parseInt(string)))
@@ -19,7 +19,11 @@ fs.readFile('./puzzleInputs/day1inputs.txt', 'utf8', (err, data) => {
     }
 })
 
-const puzzleInputs = require('./puzzleInputs/cleanedDay1Inputs.json')
+const puzzleInputs = require('./puzzleInputs/cleanedData/cleanedDay1Inputs.json')
+const puzzleAnswers = {
+    part1: 1711,
+    part2: 1743,
+}
 
 const calculateNumberOfDepthIncreases = arrayOfDepths => {
     let counter = 0
@@ -35,8 +39,7 @@ const calculateNumberOfDepthIncreases = arrayOfDepths => {
     return counter
 }
 
-// console.log(calculateNumberOfDepthIncreases(puzzleInputs))
-
+//now solve for three input sliding window
 const calculateNumberOfWindowIncreases = arrayOfDepths => {
     let [first, second, third] = [0, 1, 2]
     let counter = 0
@@ -55,5 +58,3 @@ const calculateNumberOfWindowIncreases = arrayOfDepths => {
     }
     return counter
 }
-
-console.log(calculateNumberOfWindowIncreases(puzzleInputs))

@@ -29,3 +29,23 @@ const testCase = [
     ['forward', 2],
 ]
 const expectedResult = 150
+
+const getProductOfFinalDepthAndHorizontalPosition = arrayOfCommands => {
+    let horizontalPosition = 0
+    let depth = 0
+    for (let i = 0; i < arrayOfCommands.length; i++) {
+        const [command, numberOfSpaces] = arrayOfCommands[i]
+        if (command === 'forward') {
+            horizontalPosition += numberOfSpaces
+        } else if (command === 'back') {
+            horizontalPosition -= numberOfSpaces
+        } else if (command === 'down') {
+            depth += numberOfSpaces
+        } else {
+            depth -= numberOfSpaces
+        }
+    }
+    return depth * horizontalPosition
+}
+
+console.log(getProductOfFinalDepthAndHorizontalPosition(puzzleInputs))

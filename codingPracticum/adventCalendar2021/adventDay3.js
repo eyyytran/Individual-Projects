@@ -65,4 +65,31 @@ const getPowerConsumption = arrayOfBinarys => {
     return parseInt(gammaRate.join(''), 2) * parseInt(epsilonRate.join(''), 2)
 }
 
-console.log(getPowerConsumption(require('./puzzleInputs/cleanedData/cleanedDay3Inputs.json')))
+// console.log(getPowerConsumption(require('./puzzleInputs/cleanedData/cleanedDay3Inputs.json')))
+
+const getOxygenAndCO2Rating = arrayOfBinarys => {
+    const bitLength = arrayOfBinarys[0].length
+    let oxygenArray = Array.from(arrayOfBinarys)
+    let co2Array = Array.from(arrayOfBinarys)
+
+    for (let i = 0; i < bitLength; i++) {
+        if (oxygenArray.length > 1) {
+            const currentOxygen = oxygenArray.map(bin => bin[i])
+            const oxyZeros = currentOxygen.filter(num => num === '0').length
+            const oxyOnes = currentOxygen.filter(num => num === '1').length
+            const oxyBit = oxyZeros === oxyOnes ? '1' : oxyZeros > oxyOnes ? '0' : '1'
+            oxygenArray = oxygenArray.filter(bin => bin[i] === oxyBit)
+        }
+        if (co2Array.length > 1) {
+            const currentCarbon = co2Array.map(bin => bin[i])
+            const carbonZeros = currentCarbon.filter(num => num === '0').length
+            const carbonOnes = currentCarbon.filter(num => num === '1').length
+            const carbonBit =
+                carbonZeros === carbonOnes ? '0' : carbonZeros < carbonOnes ? '0' : '1'
+            co2Array = co2Array.filter(bin => bin[i] === carbonBit)
+        }
+    }
+    return parseInt(oxygenArray[0], 2) * parseInt(co2Array[0], 2)
+}
+
+console.log(getOxygenAndCO2Rating(require('./puzzleInputs/cleanedData/cleanedDay3Inputs.json')))

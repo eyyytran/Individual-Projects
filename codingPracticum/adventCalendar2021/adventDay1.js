@@ -10,7 +10,7 @@ fs.readFile('./puzzleInputs/rawData/day1inputs.txt', 'utf8', (err, data) => {
     dataToArray.forEach(string => cleanedData.push(parseInt(string)))
     try {
         fs.writeFileSync(
-            './puzzleInputs/cleanedDay1Inputs.json',
+            './puzzleInputs/cleanedData/cleanedDay1Inputs.json',
             JSON.stringify(cleanedData, null, 4)
         )
         console.log('finished loading data')

@@ -19,6 +19,10 @@ fs.readFile('./puzzleInputs/rawData/day2Inputs.txt', 'utf-8', (error, data) => {
 })
 
 const puzzleInputs = require('./puzzleInputs/cleanedData/cleanedDay2Inputs.json')
+const puzzleAnswers = {
+    part1: 1804520,
+    part2: 1971095320,
+}
 
 const testCase = [
     ['forward', 5],

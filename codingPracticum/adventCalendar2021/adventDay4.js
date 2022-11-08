@@ -15,14 +15,12 @@ fs.readFile('./puzzleInputs/rawData/day4Inputs.txt', (err, data) => {
 
     for (let i = 0; i < dataToArray.length; i++) {
         if (dataToArray[i] && result.length < 5) {
-            const numsArray = dataToArray[i].split(' ')
-            numsArray.forEach((str, idx) => {
-                if (str === '') {
-                    numsArray.splice(idx, 1)
-                    i--
-                } else numsArray[idx] = parseInt(str)
+            const cleanedArray = []
+            dataToArray[i] = dataToArray[i].split(' ')
+            dataToArray[i].forEach(str => {
+                if (str !== '') cleanedArray.push(parseInt(str))
             })
-            result.push(numsArray)
+            result.push(cleanedArray)
         }
         if (result.length === 5) {
             cleanedData.boards.push(result)
